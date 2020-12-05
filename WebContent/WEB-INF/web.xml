@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <context-param>
+    <param-name>sqlSessionFactory</param-name>
+    <param-value>mybatis.OracleMyBatisSqlSessionFactory</param-value>
+  </context-param>
+  <context-param>
+    <param-name>memberService</param-name>
+    <param-value>service.MemberServiceImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>memberDAO</param-name>
+    <param-value>dao.MemberDAOImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>menuDAO</param-name>
+    <param-value>dao.MenuDAOImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>menuService</param-name>
+    <param-value>service.MenuServiceImpl</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>noticeDAO</param-name>
+    <param-value>dao.NoticeDAOImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>noticeService</param-name>
+    <param-value>service.NoticeServiceImpl</param-value>
+  </context-param>
+  
+   <context-param>
+    <param-name>boardDAO</param-name>
+    <param-value>dao.BoardDAOImpl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>boardService</param-name>
+    <param-value>service.BoardSeviceImpl</param-value>
+  </context-param>
+  
+  <context-param>
+	  <param-name>replyDAO</param-name> 
+	  <param-value>dao.ReplyDAOImpl</param-value> 
+  </context-param>
+  
+   <context-param>
+	  <param-name>replyService</param-name> 
+	  <param-value>service.ReplyServiceImpl</param-value> 
+  </context-param>
+  
+  <listener>
+    <listener-class>listener.ApplicationContextLoaderListener</listener-class>
+  </listener>
+  <filter>
+    <filter-name>setCharacterEncodingFilter</filter-name>
+    <filter-class>
+  		org.apache.catalina.filters.SetCharacterEncodingFilter
+  	</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>setCharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>sitemesh</filter-name>
+    <filter-class>
+  		com.opensymphony.sitemesh.webapp.SiteMeshFilter
+  	</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>sitemesh</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>crossSiteScriptFilter</filter-name>
+  	<filter-class>filter.CrossSiteScriptFilter</filter-class>
+  	<init-param>
+  		<param-name>XSSParameter</param-name>
+  		<param-value>id,pwd,name,title</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>includeURLs</param-name>
+  		<param-value>regist,modify</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>crossSiteScriptFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>FrontServlet</servlet-name>
+    <servlet-class>dispatcher.FrontServlet</servlet-class>
+    <init-param>
+      <param-name>handlerMapper</param-name>
+      <param-value>dispatcher.HandlerMapper</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FrontServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>

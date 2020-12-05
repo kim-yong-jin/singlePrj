@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties resource="properties/db.properties" />
+  
+  <typeAliases>
+		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="java.lang.Integer" alias="int" />
+
+		<typeAlias type="dto.MemberVO" alias="member" />
+		<typeAlias type="dto.MenuVO" alias="menu" />
+		<typeAlias type="dto.NoticeVO" alias="notice" />
+		<typeAlias type="dto.BoardVO" alias="board" />
+		<typeAlias type="dto.ReplyVO" alias="reply"/>
+	<!-- 	<typeAlias type="dto.ReplyVO" alias="reply" /> -->
+  </typeAliases>
+  
+  <environments default="dev">
+		<environment id="dev">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driverClassName}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+ 
+ 	<mappers> 
+		<mapper resource="mybatis/mappers/Member-Mapper.xml"/>
+		<mapper resource="mybatis/mappers/Menu-Mapper.xml"/>
+		<mapper resource="mybatis/mappers/Notice-Mapper.xml"/>
+		<mapper resource="mybatis/mappers/Board-Mapper.xml"/>
+		<mapper resource="mybatis/mappers/Reply-Mapper.xml"/>
+	</mappers>
+</configuration>
